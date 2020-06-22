@@ -1,8 +1,12 @@
-dataFile <- "./data/household_power_consumption.txt"
+dataFile1 <- "./data/household_power_consumption.txt"
 data <- read.table(dataFile, header=TRUE, sep=";", stringsAsFactors=FALSE, dec=".")
-subSetData <- data[data$Date %in% c("1/2/2007","2/2/2007") ,]
 
-# to str(subSetData)
+# to change the class
+household_power_consumption$Date <- as.Date(household_power_consumption$Date, format=="%d/%m/%y")
+# to make subset data from 2007-02-01 and 2017-02-02
+subSetData <- subset(household_power_consumption,Date=="2007-02-01" | Date=="2007-02-01")
+
+
 globalActivePower <- as.numeric(subSetData$Global_active_power)
 png("plot1.png", width=480, height=480)
 hist(globalActivePower, col="red", main="Global Active Power", xlab="Global Active Power (kilowatts)")
